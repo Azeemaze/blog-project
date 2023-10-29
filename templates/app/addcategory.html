@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% extends 'app/base.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create a new blog category</title>
+</head>
+<body>
+{% block content %}
+{% if user.is_authenticated %}
+<h3>Add Category</h3>
+<br><br>
+<div class="form-group">
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-secondary">Add Category</button>
+    <a href="{% url 'home' %}" class="btn btn-secondary">HomeView</a>
+</form>
+{% else %}
+    You are not logged in
+{% endif %}
+{% endblock %}
+</body>
+</html>

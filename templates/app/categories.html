@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% extends 'app/base.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% block content %}
+
+
+    <h3>{{ cats }} </h3>
+    <ul>
+        {% for post in category_posts %}
+        <li><a href="{% url 'article-detail' post.pk %}"> {{ post.title }} </a>-
+            <a href="{% url 'category' post.category %}"> {{ post.category }}</a> <br/>
+            {{ post.author }} <br/>
+            {{ post.body | slice:":100" }} <br/>
+            {{ post.post_date }} <br/>
+            {% if user.is_authenticated %}
+                <small><a href="{% url 'updatepost' post.pk %}"> Edit </a><a href="{% url 'deletepost' post.pk %}"> Delete </a></small></li>
+            {% endif %}
+
+    {% endfor %}
+</ul>
+
+{% endblock %}
+</body>
+</html>

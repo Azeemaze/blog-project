@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+{% extends 'app/base.html' %}
+{% block title %}Edit Profile Page{% endblock %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% block content %}
+{% if user.is_authenticated %}
+{% if user.id == profile.user.id %}
+        <h3>Edit Profile Page</h3>
+        <br><br>
+        <div class="form-group">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-secondary">Update Profile Page</button>
+            <a href="{% url 'home' %}" class="btn btn-secondary">HomeView</a>
+        </form>
+        </div>
+
+    {% else %}
+        You are not logged in
+    {% endif %}
+{% else %}
+    You are not the correct user to edit this profile
+{% endif %}
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+{% extends 'app/base.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% block content %}
+{% if user.is_authenticated %}
+    <h3>Create Profile Page</h3>
+    <br><br>
+    <div class="form-group">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-secondary">Post</button>
+        <a href="{% url 'home' %}" class="btn btn-secondary">HomeView</a>
+    </form>
+    </div>
+{% else %}
+    You are not logged in
+{% endif %}
+{% endblock %}
+</body>
+</html>
